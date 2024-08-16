@@ -8,6 +8,7 @@ const useRiskCalculator = () => {
     const [selectedProbability, setSelectedProbability] = useState('');
     const [selectedExposure, setSelectedExposure] = useState('');
     const [selectedConsequence, setSelectedConsequence] = useState('');
+    const [selectedConsequenceWeight, setSelectedConsequenceWeight] = useState(null);
     const [riskLevel, setRiskLevel] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -40,7 +41,7 @@ const useRiskCalculator = () => {
                 const response = await axiosInstance.post('/api/risk-calculator', {
                     weight_probability: selectedProbability,
                     weight_exposure: selectedExposure,
-                    weight_consequence: selectedConsequence,
+                    weight_consequence: selectedConsequenceWeight,
                 });
                 setSubmissionStatus(`Risk Score: ${response.data.data.result
                     }`);
@@ -68,6 +69,7 @@ const useRiskCalculator = () => {
         selectedProbability,
         selectedExposure,
         selectedConsequence,
+        selectedConsequenceWeight,
         riskLevel,
         loading,
         error,
@@ -75,7 +77,8 @@ const useRiskCalculator = () => {
         setSelectedProbability,
         setSelectedExposure,
         setSelectedConsequence,
-        handleSubmit
+        handleSubmit,
+        setSelectedConsequenceWeight
     };
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import useRiskCalculator from '../hooks/useRiskCalculator';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 const RiskCalculator = () => {
     const {
@@ -17,13 +17,16 @@ const RiskCalculator = () => {
         setSelectedProbability,
         setSelectedExposure,
         setSelectedConsequence,
-        handleSubmit
+        handleSubmit,
+        selectedConsequenceWeight,
+        setSelectedConsequenceWeight
     } = useRiskCalculator();
 
-
+    const [aliasConsequenceSelected, setAliasConsequenceSelected] = useState('');
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error loading data: {error.message}</p>;
+
 
     return (
         <div className="p-4 max-w-md mx-auto bg-white shadow-md rounded-lg">
@@ -65,16 +68,22 @@ const RiskCalculator = () => {
                 <select
                     id="consequence"
                     value={selectedConsequence}
-                    onChange={(e) => setSelectedConsequence(e.target.value)}
+                    onChange={(e) => {
+                        const selectedOption = consequence.find(option => option.id == e.target.value);
+                        setSelectedConsequence(e.target.value);
+                        setSelectedConsequenceWeight(selectedOption.weight);
+                        setAliasConsequenceSelected(selectedOption.alias)
+                    }}
                     className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 >
                     <option value="">Select Consequence</option>
                     {consequence.map(option => (
-                        <option key={option.id} value={option.weight}>
+                        <option key={option.id} value={option.id}>
                             {option.name}
                         </option>
                     ))}
                 </select>
+                {aliasConsequenceSelected}
             </div>
             <button
                 onClick={handleSubmit}

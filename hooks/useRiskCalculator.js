@@ -46,7 +46,13 @@ const useRiskCalculator = () => {
                     }`);
                 setRiskLevel(response.data.data.level)
             } catch (error) {
-                setSubmissionStatus(`Error: ${error.message}`);
+                if (error.response && error.response.status === 400) {
+                    const errorMessages = error.response.data.errors.map(err => err.msg).join(', ');
+                    setSubmissionStatus(`Error: ${errorMessages}`);
+                } else {
+                    setSubmissionStatus(`Error: ${error.message}`);
+                }
+                setRiskLevel(null);
                 setRiskLevel(null)
             }
         } else {

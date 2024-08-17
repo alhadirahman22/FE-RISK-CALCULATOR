@@ -38,7 +38,7 @@ const RiskCalculator = () => {
                         id="probability"
                         value={selectedProbability}
                         onChange={(e) => setSelectedProbability(e.target.value)}
-                        className="bg-blue-300 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        className="bg-blue-700 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     >
                         <option value="">Select Probability</option>
                         {probability.map(option => (
@@ -54,7 +54,7 @@ const RiskCalculator = () => {
                         id="exposure"
                         value={selectedExposure}
                         onChange={(e) => setSelectedExposure(e.target.value)}
-                        className="bg-blue-300 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        className="bg-blue-700 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     >
                         <option value="">Select Exposure</option>
                         {exposure.map(option => (
@@ -75,7 +75,7 @@ const RiskCalculator = () => {
                             setSelectedConsequenceWeight(selectedOption.weight);
                             setAliasConsequenceSelected(selectedOption.alias)
                         }}
-                        className="bg-blue-300 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        className="bg-blue-700 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     >
                         <option value="">Select Consequence</option>
                         {consequence.map(option => (
@@ -89,7 +89,7 @@ const RiskCalculator = () => {
                 </div>
                 <button
                     onClick={handleSubmit}
-                    className="bg-blue-300 ml-4 px-4 py-2  text-white rounded-md hover:bg-blue-700"
+                    className="bg-blue-700 ml-4 px-4 py-2  text-white rounded-md hover:bg-blue-700"
                 >
                     Calculate
                 </button>
@@ -105,7 +105,7 @@ const RiskCalculator = () => {
                         </div>
                     )}
                     {submissionStatus && (
-                        <div className="mt-4 text-lg font-semibold text-gray-700">
+                        <div className="mt-1 text-lg font-semibold text-gray-700">
                             {submissionStatus}
                         </div>
                     )}
